@@ -1,4 +1,64 @@
 
 .body{
-    background-color: #1c5a98;
+    background-image: url(https://res.cloudinary.com/dxhcv6buy/image/upload/v1731517808/clubgif_mfuchf.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+} 
+
+/* body del index de usuarios */
+.body_usuario{
+    background-color: #ECECEC;
+}
+.usuario_nav{
+    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* body del index de socios */
+.body_socios{
+    background-color: #ECECEC;
+
+
+
+
+
+}
+.socios_nav{
+    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.socios_create_nav{
+    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.text-white{
+    color: #000000 !important;
+}
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en dispositivos móviles */
+}
+.body_login{
+    background-image: url(https://i.postimg.cc/rmgPbtck/Green-and-White-Simple-Golf-Club-Presentation-4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.container_login{
+    background-color:rgb(198, 168, 52, 0.8);
+   
+}
+
+.btn-primary{
+    background-color: rgb(241, 103, 55) !important;
+    border-radius:  rgb(241, 103, 55)    !important;
 }

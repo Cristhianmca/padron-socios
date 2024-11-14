@@ -13,6 +13,8 @@ import com.padron.padron.entities.Socios;
 import com.padron.padron.entities.SociosDto;
 import com.padron.padron.services.SociosService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/socios")
 
@@ -23,15 +25,20 @@ public class SociosController {
    private SociosService service;
 
     @GetMapping({ "", "/" })
-    public String getSocios(Model model) {
+    public String getSocios(Model model, HttpSession session) {
+        if(session.getAttribute("tiposession")== null ){
+            return "redirect:/usuario/login";
+        }
         var Socios = service.listarSocios();
         model.addAttribute("socios", Socios);
         return "socios/index";
     }
 
     @GetMapping("/create")
-    public String createSocios(Model model){
-
+    public String createSocios(Model model, HttpSession session){
+         if(session.getAttribute("tiposession")== null ){
+            return "redirect:/usuario/login";
+        }
         SociosDto dto = new SociosDto();
         model.addAttribute("dto", dto);
         return "socios/create";
@@ -61,7 +68,10 @@ public class SociosController {
     }   
 
     @GetMapping("/edit")
-    public String editarSocios(Model model,@RequestParam Long id){
+    public String editarSocios(Model model,@RequestParam Long id , HttpSession session){
+        if(session.getAttribute("tiposession")== null ){
+            return "redirect:/usuario/login";
+        }
         Socios socio = service.leeIdSocios(id);
         if (socio == null) {
             return "redirect:/socios";
@@ -107,7 +117,10 @@ public class SociosController {
     }
 
     @GetMapping("/delete")
-    public String eliminarSocio(@RequestParam Long id){
+    public String eliminarSocio(@RequestParam Long id, HttpSession session){
+        if(session.getAttribute("tiposession")== null ){
+            return "redirect:/usuario/login";
+        }
         service.eliminarSocio(id);
         return "redirect:/socios";
     }

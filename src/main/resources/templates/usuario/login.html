@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/componente/head :: head"></head>
+<link rel="stylesheet" href="/css/index.css">
+
+<body class="body_login">
+  <div >
+     <nav th:replace="/componente/navbar :: navbar"></nav>
+  </div>
+   
+    <div class="mt-4 py-3 py-md-5 ">
+        <div class="container ">
+            <div class="row justify-content-md-center ">
+                <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 ">
+                    <div class="container_login  p-4 p-md-5 rounded shadow-sm">
+                        <div class="row ">
+                            <div class="col-12">
+                                <div class="text-center mb-5">
+                                    <a href="#!">
+                                        <img src="https://i.postimg.cc/DfgxxFZr/thumbs-php.jpg" alt="BootstrapBrain Logo" width="120"
+                                            height="100" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Asegúrate de que el th:object="${usuario}" coincide con el modelo del controlador -->
+                        <form th:action="@{/usuario/login}" th:object="${usuario}" method="POST">
+                          <!-- Tus otros campos del formulario aquí -->
+                          <div class="row gy-3 gy-md-4 overflow-hidden ">
+                              <div class="col-12">
+                                  <label for="dni" class="form-label">DNI <span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                      <span class="input-group-text">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                              <path d="..."></path>
+                                          </svg>
+                                      </span>
+                                      <input type="text" class="form-control" th:field="*{dni}" id="dni" required />
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <label for="clave" class="form-label">Password <span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                      <span class="input-group-text">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                              <path d="..."></path>
+                                          </svg>
+                                      </span>
+                                      <input type="password" class="form-control" th:field="*{clave}" id="clave" required />
+                                  </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="d-grid">
+                                      <button class="btn btn-primary btn-lg" type="submit">
+                                          Ingresar
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                      
+                        <div class="row">
+                            <div class="col-12">
+                                <hr class="mt-5 mb-4 border-secondary-subtle" />
+                                <div
+                                    class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center">
+                                    <a href="#!" class="link-secondary text-decoration-none">Crear nueva cuenta</a>
+                                    <a href="#!" class="link-secondary text-decoration-none">¿Olvido su
+                                        contraseña?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="/componente/footer :: footer"></footer>
+</body>
+
+</html>

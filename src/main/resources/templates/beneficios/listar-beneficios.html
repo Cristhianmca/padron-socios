@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Beneficios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div th:replace="componente/navbar :: navbar"></div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Lista de Beneficios</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha de Inicio</th>
+                                    <th>Fecha de Fin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="beneficio : ${beneficios}">
+                                    <td th:text="${beneficio.id}"></td>
+                                    <td th:text="${beneficio.nombreBeneficio}"></td>
+                                    <td th:text="${beneficio.descripcion}"></td>
+                                    <td th:text="${beneficio.fechaInicio}"></td>
+                                    <td th:text="${beneficio.fechaFin}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="text-center mt-4">
+                            <a th:href="@{/beneficios/asignar}" class="btn btn-primary">Asignar Beneficio a Socio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="componente/footer :: footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

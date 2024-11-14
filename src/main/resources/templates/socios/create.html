@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="/componente/head :: head"> </head>
+  <link rel="stylesheet" href="/css/index.css">
   
 
   <body>
-    <nav class="color_nav" th:replace="/componente/navbar :: navbar"></nav>
+    <div class="socios_create_nav">
+    <nav  th:replace="/componente/navbar :: navbar"></nav>  
+    </div>
+    
     <div class="row">
       <div class="col-md-8 mx-auto rounded border p-4">
         <h1 class="text-center md-5">Nuevo Socio</h1>
