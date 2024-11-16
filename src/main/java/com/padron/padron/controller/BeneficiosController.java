@@ -64,7 +64,9 @@ public String asignarBeneficio(@RequestParam("socioId") Long socioId, @RequestPa
     beneficioPorSocio.setBeneficio(beneficio);
     beneficioPorSocio.setEstado(1);
     beneficioPorSocio.setFechaAsignacion(LocalDate.now());
-
+    beneficioPorSocio.setFechaFin(LocalDate.now().plusMonths(1)); // Asignar un mes de vigencia al beneficio y si quiero 3 meses sería plusMonths(3) , pero si quiero manejarlo en mi codigo html que pondria
+    // esto de arriba hace que se le asigne un mes de vigencia al beneficio automanticamente
+    // y podria
     beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
 
     redirectAttributes.addFlashAttribute("message", "Beneficio asignado correctamente");

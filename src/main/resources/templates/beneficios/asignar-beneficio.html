@@ -76,7 +76,19 @@
                 readonly
               />
             </div>
-
+            <div class="mb-3">
+              <label for="fechaFin" class="form-label"
+                >Fecha de Vencimiento</label
+              >
+              <input
+                type="date"
+                id="fechaFin"
+                name="fechaFin"
+                class="form-control"
+                th:value="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}"
+                required
+              />
+                
             <button type="submit" class="btn btn-success w-100">
               Asignar Beneficio
             </button>

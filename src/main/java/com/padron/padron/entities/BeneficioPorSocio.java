@@ -36,6 +36,7 @@ public class BeneficioPorSocio {
     private int estado;
 
     private LocalDate fechaAsignacion;
+    private LocalDate fechaFin;
 
     
 }
