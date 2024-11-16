@@ -1,34 +1,30 @@
-|<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Asignar Beneficio a Socio</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
+    <head th:replace="/componente/head :: head"> </head>
+   <link rel="stylesheet" href="/css/beneficio.css" />
+   <link rel="stylesheet" href="/css/index.css">
   <body>
-    <div class="container mt-5">
-      <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white">
-          <h2 class="mb-0">Asignar Beneficio a Socio</h2>
+    <div class="socios_nav">
+        <nav  th:replace="/componente/navbar :: navbar"></nav>  
+       </div>
+    <div class="container_beneficio">
+        
+      <div class="card">
+        <div class="card-header">
+          Asignar Beneficio a Socio
         </div>
         <div class="card-body">
-          <!-- Mensaje de éxito -->
-          <div th:if="${message}" class="alert alert-success" role="alert">
+
+          <div th:if="${message}" class="alert alert-success text-center" role="alert">
             <p th:text="${message}"></p>
           </div>
 
           <form th:action="@{/beneficios/asignar-beneficio}" method="post">
-            <!-- Selección de Socio -->
-            <div class="mb-3">
-              <label for="socioId" class="form-label"
-                >Seleccione un Socio</label
-              >
+           
+            <div class="form-group">
+              <label for="socioId" class="form-label">Seleccione un Socio</label>
               <select id="socioId" name="socioId" class="form-select" required>
-                <option value="" disabled selected
-                  >Seleccione un socio...</option
-                >
+                <option value="" disabled selected>Seleccione un socio...</option>
                 <option
                   th:each="socio : ${socios}"
                   th:value="${socio.idsocio}"
@@ -37,20 +33,11 @@
               </select>
             </div>
 
-            <!-- Selección de Beneficio -->
-            <div class="mb-3">
-              <label for="beneficioId" class="form-label"
-                >Seleccione un Beneficio</label
-              >
-              <select
-                id="beneficioId"
-                name="beneficioId"
-                class="form-select"
-                required
-              >
-                <option value="" disabled selected
-                  >Seleccione un beneficio...</option
-                >
+           
+            <div class="form-group">
+              <label for="beneficioId" class="form-label">Seleccione un Beneficio</label>
+              <select id="beneficioId" name="beneficioId" class="form-select" required>
+                <option value="" disabled selected>Seleccione un beneficio...</option>
                 <option
                   th:each="beneficio : ${beneficios}"
                   th:value="${beneficio.id}"
@@ -59,14 +46,9 @@
               </select>
             </div>
 
-            <!-- Estado del Beneficio (Campo oculto o fijo) -->
-            <input type="hidden" id="estado" name="estado" value="1" />
-
-            <!-- Fecha de Asignación (Campo solo lectura) -->
-            <div class="mb-3">
-              <label for="fechaAsignacion" class="form-label"
-                >Fecha de Asignacion</label
-              >
+           
+            <div class="form-group">
+              <label for="fechaAsignacion" class="form-label">Fecha de Asignación</label>
               <input
                 type="text"
                 id="fechaAsignacion"
@@ -76,10 +58,10 @@
                 readonly
               />
             </div>
-            <div class="mb-3">
-              <label for="fechaFin" class="form-label"
-                >Fecha de Vencimiento</label
-              >
+
+         
+            <div class="form-group">
+              <label for="fechaFin" class="form-label">Fecha de Vencimiento</label>
               <input
                 type="date"
                 id="fechaFin"
@@ -88,10 +70,12 @@
                 th:value="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}"
                 required
               />
-                
-            <button type="submit" class="btn btn-success w-100">
-              Asignar Beneficio
-            </button>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Asignar Beneficio</button>
+            </div>
           </form>
         </div>
       </div>
