@@ -23,7 +23,7 @@ public class BeneficiosPorSocioServiceImpl implements BeneficiosPorSocioService 
     @Override
     public List<BeneficioPorSocio> obtenerBeneficiosPorSocio(Long socioId) {
         // Recupera todos los beneficios asignados a un socio específico
-        return beneficiosPorSocioRepository.findBySocioId(socioId);
+        return beneficiosPorSocioRepository.findBySocioId(socioId); // Aquí se asume que existe un método findBySocioId en el repositorio
     }
 
     @Override

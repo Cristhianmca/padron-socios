@@ -2,7 +2,7 @@ package com.padron.padron.entities;
 
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 import org.hibernate.annotations.ColumnDefault;
 

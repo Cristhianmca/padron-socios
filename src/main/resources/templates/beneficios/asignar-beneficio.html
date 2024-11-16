@@ -1,56 +1,91 @@
-<!DOCTYPE html>
+|<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Asignar Beneficio a Socio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-
-    <!-- Navbar -->
-    <div th:replace="componente/navbar :: navbar"></div>
-
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h3>Asignar Beneficio a Socio</h3>
-                    </div>
-                    <div class="card-body">
-                        <form th:action="@{/beneficios/asignar-beneficio}" method="post">
-    <div class="mb-3">
-        <label for="socio" class="form-label">Seleccione un Socio</label>
-        <select name="socioId" class="form-select" id="socios" required>
-            <option value="" disabled selected>Seleccione un socio</option>
-            <option th:each="socio : ${socios}" th:value="${socio.idsocio}" th:text="${socio.nombre + ' ' + socio.apellidoP}"></option>
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label for="beneficio" class="form-label">Seleccione un Beneficio</label>
-        <select name="beneficioId" class="form-select" id="beneficio" required>
-            <option value="" disabled selected>Seleccione un beneficio</option>
-            <option th:each="beneficio : ${beneficios}" th:value="${beneficio.id}" th:text="${beneficio.nombreBeneficio}"></option>
-        </select>
-    </div>
-
-    
-
-    <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary">Asignar Beneficio</button>
-        <a th:href="@{/beneficios}" class="btn btn-secondary">Cancelar</a>
-    </div>
-</form>
-
-                    </div>
-                </div>
-            </div>
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Asignar Beneficio a Socio</h2>
         </div>
+        <div class="card-body">
+          <!-- Mensaje de éxito -->
+          <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}"></p>
+          </div>
+
+          <form th:action="@{/beneficios/asignar-beneficio}" method="post">
+            <!-- Selección de Socio -->
+            <div class="mb-3">
+              <label for="socioId" class="form-label"
+                >Seleccione un Socio</label
+              >
+              <select id="socioId" name="socioId" class="form-select" required>
+                <option value="" disabled selected
+                  >Seleccione un socio...</option
+                >
+                <option
+                  th:each="socio : ${socios}"
+                  th:value="${socio.idsocio}"
+                  th:text="${socio.nombre} + ' ' + ${socio.apellidoP}"
+                ></option>
+              </select>
+            </div>
+
+            <!-- Selección de Beneficio -->
+            <div class="mb-3">
+              <label for="beneficioId" class="form-label"
+                >Seleccione un Beneficio</label
+              >
+              <select
+                id="beneficioId"
+                name="beneficioId"
+                class="form-select"
+                required
+              >
+                <option value="" disabled selected
+                  >Seleccione un beneficio...</option
+                >
+                <option
+                  th:each="beneficio : ${beneficios}"
+                  th:value="${beneficio.id}"
+                  th:text="${beneficio.nombreBeneficio}"
+                ></option>
+              </select>
+            </div>
+
+            <!-- Estado del Beneficio (Campo oculto o fijo) -->
+            <input type="hidden" id="estado" name="estado" value="1" />
+
+            <!-- Fecha de Asignación (Campo solo lectura) -->
+            <div class="mb-3">
+              <label for="fechaAsignacion" class="form-label"
+                >Fecha de Asignacion</label
+              >
+              <input
+                type="text"
+                id="fechaAsignacion"
+                name="fechaAsignacion"
+                class="form-control"
+                th:value="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}"
+                readonly
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+              Asignar Beneficio
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <div th:replace="componente/footer :: footer"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  </body>
 </html>

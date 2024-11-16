@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +44,7 @@ public class BeneficiosController {
     public String mostrarFormularioAsignar(Model model) {
         model.addAttribute("socios", sociosService.listarSocios());
         model.addAttribute("beneficios", beneficioService.obtenerTodosLosBeneficios());
-        model.addAttribute("beneficioPorSocio", new BeneficioPorSocio());
+        model.addAttribute("beneficioPorSocio", new BeneficioPorSocio()); // Esto asegura que el objeto está en el contexto
         return "beneficios/asignar-beneficio"; // Nombre de la vista Thymeleaf para asignar beneficios
     }
 
@@ -62,6 +62,7 @@ public String asignarBeneficio(@RequestParam("socioId") Long socioId, @RequestPa
     BeneficioPorSocio beneficioPorSocio = new BeneficioPorSocio();
     beneficioPorSocio.setSocio(socio);
     beneficioPorSocio.setBeneficio(beneficio);
+    beneficioPorSocio.setEstado(1);
     beneficioPorSocio.setFechaAsignacion(LocalDate.now());
 
     beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
