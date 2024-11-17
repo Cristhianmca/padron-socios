@@ -16,29 +16,37 @@
                         <h3>Lista de Beneficios</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Fecha de Fin</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="beneficio : ${beneficios}">
-                                    <td th:text="${beneficio.id}"></td>
-                                    <td th:text="${beneficio.nombreBeneficio}"></td>
-                                    <td th:text="${beneficio.descripcion}"></td>
-                                    <td th:text="${beneficio.fechaInicio}"></td>
-                                    <td th:text="${beneficio.fechaFin}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="text-center mt-4">
-                            <a th:href="@{/beneficios/asignar}" class="btn btn-primary">Asignar Beneficio a Socio</a>
+                        <a class="btn btn-outline-primary mb-3" href="/beneficios/agregar">Agregar Beneficio</a>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha de Inicio</th>
+                                        <th>Fecha de Fin</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="beneficio : ${beneficios}">
+                                        <td th:text="${beneficio.id}"></td>
+                                        <td th:text="${beneficio.nombreBeneficio}"></td>
+                                        <td th:text="${beneficio.descripcion}"></td>
+                                        <td th:text="${beneficio.fechaInicio}"></td>
+                                        <td th:text="${beneficio.fechaFin}"></td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" th:href="@{/beneficios/editar(id=${beneficio.id})}">Editar</a>
+                                            <a class="btn btn-danger btn-sm" th:href="@{/beneficios/eliminar(id=${beneficio.id})}">Borrar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center mt-4">
+                                <a th:href="@{/beneficios/asignar}" class="btn btn-primary">Asignar Beneficio a Socio</a>
+                            </div>
+    
                         </div>
                     </div>
                 </div>

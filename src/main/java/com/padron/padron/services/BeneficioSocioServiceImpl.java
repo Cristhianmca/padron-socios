@@ -31,4 +31,8 @@ public class BeneficioSocioServiceImpl implements BeneficioSocioService {
             throw new RuntimeException("Beneficio no encontrado con ID: " + id);
         }
     }
+    @Override
+    public BeneficioSocio guardarBeneficio(BeneficioSocio beneficio) {
+        return beneficioSocioRepository.save(beneficio);
+    }
 }

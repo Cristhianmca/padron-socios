@@ -70,7 +70,23 @@ public String asignarBeneficio(@RequestParam("socioId") Long socioId, @RequestPa
     beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
 
     redirectAttributes.addFlashAttribute("message", "Beneficio asignado correctamente");
-    return "redirect:/beneficios/asignar";
+    return "redirect:/beneficios";
 }
+
+@GetMapping("/agregar")
+
+public String mostrarFormularioAgregar(Model model) {
+    model.addAttribute("beneficio", new BeneficioSocio());
+    return "beneficios/agregar-beneficio";
+}
+
+@PostMapping("/guardar")
+public String guardarBeneficio(BeneficioSocio beneficio, RedirectAttributes redirectAttributes) {
+    beneficioService.guardarBeneficio(beneficio);
+    redirectAttributes.addFlashAttribute("message", "Beneficio guardado correctamente");
+    return "redirect:/beneficios";
+}
+
+
 
 }
