@@ -8,5 +8,6 @@ public interface BeneficiosPorSocioService {
     BeneficioPorSocio guardarBeneficioPorSocio(BeneficioPorSocio beneficiosPorSocio);
     List<BeneficioPorSocio> obtenerBeneficiosPorSocio(Long socioId);
     List<BeneficioPorSocio> obtenerTodosLosBeneficios();
+    BeneficioPorSocio obtenerBeneficioPorId(Long id);
     
 }

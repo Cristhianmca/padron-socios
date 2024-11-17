@@ -65,7 +65,28 @@
     </div>
 </div>
 
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h3>Buscar Beneficios por Socio</h3>
+          </div>
+          <div class="card-body">
+            <form th:action="@{/beneficios/listar-por-socio}" method="get">
+              <div class="mb-3">
+                <label for="socioId" class="form-label">ID del Socio</label>
+                <input type="text" id="socioId" name="socioId" class="form-control" required>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Ver Beneficios</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <footer th:replace="/componente/footer :: footer"></footer>

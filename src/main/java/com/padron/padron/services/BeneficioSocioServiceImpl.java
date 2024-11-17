@@ -35,4 +35,8 @@ public class BeneficioSocioServiceImpl implements BeneficioSocioService {
     public BeneficioSocio guardarBeneficio(BeneficioSocio beneficio) {
         return beneficioSocioRepository.save(beneficio);
     }
+    @Override
+    public void eliminarBeneficio(Long id) {
+        beneficioSocioRepository.deleteById(id);
+    }
 }

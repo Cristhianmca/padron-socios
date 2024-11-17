@@ -21,6 +21,7 @@ public class BeneficioPorSocio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idbeneficio")
     private Long id;
 
     @ManyToOne

@@ -1,23 +1,24 @@
 package com.padron.padron.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.padron.padron.services.BeneficiosPorSocioService;
-import com.padron.padron.services.SociosService;
-import com.padron.padron.services.BeneficioSocioService;
 import com.padron.padron.entities.BeneficioPorSocio;
 import com.padron.padron.entities.BeneficioSocio;
 import com.padron.padron.entities.Socios;
+import com.padron.padron.services.BeneficioSocioService;
+import com.padron.padron.services.BeneficiosPorSocioService;
+import com.padron.padron.services.SociosService;
 
 @Controller
 @RequestMapping("/beneficios")
@@ -32,61 +33,110 @@ public class BeneficiosController {
     @Autowired
     private BeneficiosPorSocioService beneficiosPorSocioService;
 
-    // Método para listar los beneficios existentes
     @GetMapping("")
     public String listarBeneficios(Model model) {
         model.addAttribute("beneficios", beneficioService.obtenerTodosLosBeneficios());
-        return "beneficios/listar-beneficios"; // Nombre de la vista Thymeleaf para listar beneficios
+        return "beneficios/listar-beneficios";
     }
 
-    // Método para mostrar el formulario de asignar beneficios a socios
     @GetMapping("/asignar")
     public String mostrarFormularioAsignar(Model model) {
         model.addAttribute("socios", sociosService.listarSocios());
         model.addAttribute("beneficios", beneficioService.obtenerTodosLosBeneficios());
-        model.addAttribute("beneficioPorSocio", new BeneficioPorSocio()); // Esto asegura que el objeto está en el contexto
-        return "beneficios/asignar-beneficio"; // Nombre de la vista Thymeleaf para asignar beneficios
+        model.addAttribute("beneficioPorSocio", new BeneficioPorSocio());
+        return "beneficios/asignar-beneficio";
     }
 
-    // Método para procesar la asignación de beneficios
     @PostMapping("/asignar-beneficio")
-public String asignarBeneficio(@RequestParam("socioId") Long socioId, @RequestParam("beneficioId") Long beneficioId, RedirectAttributes redirectAttributes) {
-    Socios socio = sociosService.leeIdSocios(socioId);
-    BeneficioSocio beneficio = beneficioService.obtenerBeneficioPorId(beneficioId);
+    public String asignarBeneficio(@RequestParam("socioId") Long socioId, @RequestParam("beneficioId") Long beneficioId,
+            RedirectAttributes redirectAttributes) {
+        Socios socio = sociosService.leeIdSocios(socioId);
+        BeneficioSocio beneficio = beneficioService.obtenerBeneficioPorId(beneficioId);
 
-    if (socio == null || beneficio == null) {
-        throw new RuntimeException("Socio o Beneficio no encontrado");
+        if (socio == null || beneficio == null) {
+            throw new RuntimeException("Socio o Beneficio no encontrado");
+        }
+
+        BeneficioPorSocio beneficioPorSocio = new BeneficioPorSocio();
+        beneficioPorSocio.setSocio(socio);
+        beneficioPorSocio.setBeneficio(beneficio);
+        beneficioPorSocio.setEstado(1);
+        beneficioPorSocio.setFechaAsignacion(LocalDate.now());
+        beneficioPorSocio.setFechaFin(LocalDate.now().plusMonths(1));
+        beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
+
+        redirectAttributes.addFlashAttribute("message", "Beneficio asignado correctamente");
+        return "redirect:/beneficios/asignar";
     }
 
-    // Verificar que socio y beneficio no sean null
-    BeneficioPorSocio beneficioPorSocio = new BeneficioPorSocio();
-    beneficioPorSocio.setSocio(socio);
-    beneficioPorSocio.setBeneficio(beneficio);
-    beneficioPorSocio.setEstado(1);
-    beneficioPorSocio.setFechaAsignacion(LocalDate.now());
-    beneficioPorSocio.setFechaFin(LocalDate.now().plusMonths(1)); // Asignar un mes de vigencia al beneficio y si quiero 3 meses sería plusMonths(3) , pero si quiero manejarlo en mi codigo html que pondria
-    // esto de arriba hace que se le asigne un mes de vigencia al beneficio automanticamente
-    // y podria
-    beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
+    @GetMapping("/agregar")
+    public String mostrarFormularioAgregar(Model model) {
+        model.addAttribute("beneficio", new BeneficioSocio());
+        return "beneficios/agregar-beneficio";
+    }
 
-    redirectAttributes.addFlashAttribute("message", "Beneficio asignado correctamente");
-    return "redirect:/beneficios";
-}
+    @PostMapping("/guardar")
+    public String guardarBeneficio(BeneficioSocio beneficio, RedirectAttributes redirectAttributes) {
+        if (beneficio.getId() != null) {
+            BeneficioSocio beneficioExistente = beneficioService.obtenerBeneficioPorId(beneficio.getId());
+            if (beneficioExistente != null) {
+                beneficioExistente.setNombreBeneficio(beneficio.getNombreBeneficio());
+                beneficioExistente.setDescripcion(beneficio.getDescripcion());
+                beneficioExistente.setFechaInicio(beneficio.getFechaInicio());
+                beneficioExistente.setFechaFin(beneficio.getFechaFin());
+                beneficioService.guardarBeneficio(beneficioExistente);
+                redirectAttributes.addFlashAttribute("message", "Beneficio actualizado correctamente");
+                return "redirect:/beneficios";
+            }
+        }
+        beneficioService.guardarBeneficio(beneficio);
+        redirectAttributes.addFlashAttribute("message", "Beneficio guardado correctamente");
+        return "redirect:/beneficios";
+    }
 
-@GetMapping("/agregar")
+    @GetMapping("/editar")
+    public String editarBeneficioSocio(@RequestParam("id") Long id, Model model) {
+        BeneficioSocio beneficio = beneficioService.obtenerBeneficioPorId(id);
+        model.addAttribute("beneficio", beneficio);
+        return "beneficios/editar-beneficio";
+    }
 
-public String mostrarFormularioAgregar(Model model) {
-    model.addAttribute("beneficio", new BeneficioSocio());
-    return "beneficios/agregar-beneficio";
-}
+    @GetMapping("/editar-beneficio-por-socio")
+    public String editarBeneficioPorSocio(@RequestParam("id") Long id, Model model) {
+        BeneficioPorSocio beneficioPorSocio = beneficiosPorSocioService.obtenerBeneficioPorId(id);
+        model.addAttribute("beneficioPorSocio", beneficioPorSocio);
+        return "beneficios/editar-beneficio-por-socio";
+    }
 
-@PostMapping("/guardar")
-public String guardarBeneficio(BeneficioSocio beneficio, RedirectAttributes redirectAttributes) {
-    beneficioService.guardarBeneficio(beneficio);
-    redirectAttributes.addFlashAttribute("message", "Beneficio guardado correctamente");
-    return "redirect:/beneficios";
-}
+    @PostMapping("/guardar-beneficio-por-socio")
+    public String guardarBeneficioPorSocio(@ModelAttribute BeneficioPorSocio beneficioPorSocio,
+            RedirectAttributes redirectAttributes) {
+        try {
+            BeneficioPorSocio beneficioExistente = beneficiosPorSocioService
+                    .obtenerBeneficioPorId(beneficioPorSocio.getId());
+            if (beneficioExistente != null) {
+                beneficioExistente.setEstado(beneficioPorSocio.getEstado());
+                beneficioExistente.setFechaAsignacion(beneficioPorSocio.getFechaAsignacion());
+                beneficioExistente.setFechaFin(beneficioPorSocio.getFechaFin());
+                beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioExistente);
+                redirectAttributes.addFlashAttribute("message", "Beneficio por socio actualizado correctamente");
+            }
+            return "redirect:/beneficios/listar-por-socio?socioId=" + beneficioPorSocio.getSocio().getIdsocio();
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al actualizar el beneficio: " + e.getMessage());
+            return "redirect:/beneficios";
+        }
+    }
 
-
-
+    @GetMapping("/listar-por-socio")
+    public String listarBeneficiosPorSocio(@RequestParam("socioId") Long socioId, Model model) {
+        Socios socio = sociosService.leeIdSocios(socioId);
+        if (socio == null) {
+            throw new RuntimeException("Socio no encontrado");
+        }
+        List<BeneficioPorSocio> beneficiosPorSocio = beneficiosPorSocioService.obtenerBeneficiosPorSocio(socioId);
+        model.addAttribute("socio", socio);
+        model.addAttribute("beneficiosPorSocio", beneficiosPorSocio);
+        return "beneficios/listar-beneficios-por-socio";
+    }
 }
