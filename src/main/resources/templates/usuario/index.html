@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/componente/head :: head"> 
 </head>
+
 <link rel="stylesheet" href="/css/index.css">
 
-<body class="body_usuario">
+<body class="body_socios">
   <div class="usuario_nav">
     <nav th:replace="/componente/navbar :: navbar"></nav>
   </div>
@@ -13,9 +14,9 @@
     <h1 class="text-center  ">Lista de Usuarios</h1>
     <a class="btn btn-outline-warning" href="/usuario/create">Nuevo Usuario</a>
 
-    <table class="table">
-      <thead>
-        <tr>
+    <table class="table ">
+      <thead >
+        <tr >
           <th>Id</th>
           <th>DNI</th>
           <th>APELLIDOS</th>
@@ -25,8 +26,8 @@
           <th>Acciones</th>
 
         </tr>
-      <tbody class="table-group-divider">
-        <tr th:each="usuario: ${usuario}">
+      <tbody class="table-group-divider ">
+        <tr clas th:each="usuario: ${usuario}">
           <td th:text="${usuario.idusuario}" ></td>
           <td th:text="${usuario.dni}" ></td>
           <td th:text="${usuario.apellidos}" ></td>

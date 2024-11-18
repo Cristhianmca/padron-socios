@@ -2,30 +2,56 @@
 <html lang="en">
   <head th:replace="/componente/head :: head"></head>
   <link rel="stylesheet" href="/css/index.css" />
-  <body class="body">
+  <link rel="stylesheet" href="/css/formulario.css">
+  <body >
+   
+   <div class="body">
     <nav th:replace="/componente/navbar :: navbar"></nav>
+   </div> 
 
     <!-- <div class="video-container">
         <video src="https://res.cloudinary.com/dxhcv6buy/video/upload/v1731517209/club_xjxjbo.mp4" controls autoplay muted loop>
             Your browser does not support the video tag.
         </video>
     </div> -->
-<div>
-    <form action="https://formspree.io/f/meoqzjvy" method="POST">
-        <label>
-          Your email:
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Your message:
-          <textarea name="message"></textarea>
-        </label>
-        <!-- your other form fields go here -->
-        <button type="submit">Send</button>
-      </form>
+    <div class="form_index">
   
-      <footer th:replace="/componente/footer :: footer"></footer>
-</div>
+<form class="form">
+    
+    <div class="flex">
+        <label>
+            <input class="input" type="text" placeholder="" required="">
+            <span>first name</span>
+        </label>
+
+        <label>
+            <input class="input" type="text" placeholder="" required="">
+            <span>last name</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input class="input" type="email" placeholder="" required="">
+        <span>email</span>
+    </label> 
+        
+    <label>
+        <input class="input" placeholder="" type="tel" required="">
+        <span>contact number</span>
+    </label>
+    <label>
+        <textarea class="input01" placeholder="" rows="3" required=""></textarea>
+        <span>message</span>
+    </label>
+    
+    <button href="#" class="fancy">
+      <span class="top-key"></span>
+      <span class="text">submit</span>
+      <span class="bottom-key-1"></span>
+      <span class="bottom-key-2"></span>
+    </button>
+</form>
+    </div>
     
     <footer th:replace="/componente/footer :: footer"></footer>
   </body>

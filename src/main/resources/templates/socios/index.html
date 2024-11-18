@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/css/index.css">
 
 
+
 <body class="body_socios">
   <div class="socios_nav">
    <nav  th:replace="/componente/navbar :: navbar"></nav>  
@@ -18,11 +19,11 @@
     <a class="btn btn-outline-warning mb-2" href="/socios/create">Nuevo Socio</a>
 
     <!-- Contenedor con scroll horizontal -->
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
+    <div class="table-responsive form_socios ">
+        <table class="table table-striped form_socios ">
+            <thead class="form_socios" >
+                <tr class="form_socios">
+                    <th >ID</th>
                     <th>DNI</th>
                     <th>NOMBRES</th>
                     <th>APELLIDO P.</th>
@@ -39,8 +40,8 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr th:each="socios : ${socios}">
+            <tbody class="form_socios">
+                <tr class="form_socios" th:each="socios : ${socios}">
                     <td th:text="${socios.idsocio}"></td>
                     <td th:text="${socios.dni}"></td>
                     <td th:text="${socios.nombre}"></td>

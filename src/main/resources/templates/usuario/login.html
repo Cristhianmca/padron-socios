@@ -13,19 +13,20 @@
         <div class="container ">
             <div class="row justify-content-md-center ">
                 <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6 ">
-                    <div class="container_login  p-4 p-md-5 rounded shadow-sm">
+                    <div class="form-control  p-4 p-md-5 rounded shadow-sm">
                         <div class="row ">
                             <div class="col-12">
+                                <h1 class="text-center mb-4 text-dark">Iniciar Sesión</h1>
                                 <div class="text-center mb-5">
                                     <a href="#!">
-                                        <img src="https://i.postimg.cc/DfgxxFZr/thumbs-php.jpg" alt="BootstrapBrain Logo" width="120"
+                                        <img src="https://i.postimg.cc/gcgLyqDp/office-man.png" alt="BootstrapBrain Logo" width="120"
                                             height="100" />
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <!-- Asegúrate de que el th:object="${usuario}" coincide con el modelo del controlador -->
-                        <form th:action="@{/usuario/login}" th:object="${usuario}" method="POST">
+                        <form th:action="@{/usuario/login}" th:object="${usuario}" method="POST" class="form-control">
                           <!-- Tus otros campos del formulario aquí -->
                           <div class="row gy-3 gy-md-4 overflow-hidden ">
                               <div class="col-12">

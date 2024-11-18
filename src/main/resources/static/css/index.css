@@ -1,64 +1,206 @@
-
-.body{
+/* Estilos generales */
+.body {
     background-image: url(https://res.cloudinary.com/dxhcv6buy/image/upload/v1731517808/clubgif_mfuchf.gif);
     background-size: cover;
     background-repeat: no-repeat;
-    
-} 
-
-/* body del index de usuarios */
-.body_usuario{
-    background-color: #ECECEC;
+    min-height: 100vh;
 }
-.usuario_nav{
-    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
+
+/* Estilos para socios */
+.body_socios {
+    background-color: #171717;
+    color: white !important;
+    min-height: 100vh;
+}
+
+/* Estilos de navegación */
+.socios_nav {
+    /* background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}
-/* body del index de socios */
-.body_socios{
-    background-color: #ECECEC;
-
-
-
-
-
-}
-.socios_nav{
-    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    padding: 1rem 0;
+    background-color: hwb(0 9% 91%);
 }
 
-.socios_create_nav{
-    background-image: url(https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+/* Estilos específicos para la tabla */
+.table-responsive.form_socios {
+    background-color: #171717 !important;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-
-.text-white{
-    color: #000000 !important;
+.table.table-striped.form_socios {
+    margin-bottom: 0;
+    background-color: #171717 !important;
 }
+
+/* Estilos para el encabezado de la tabla */
+.form_socios thead th {
+    background-color: #e8e8e8 !important;
+    color: rgb(10, 5, 5) !important;
+    border-color: #333 !important;
+    padding: 12px !important;
+    font-weight: 600;
+}
+
+/* Estilos para el cuerpo de la tabla */
+.form_socios tbody tr {
+    background-color: #e8e8e8 !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: #333 !important;
+}
+
+.form_socios tbody td {
+    background-color: #e8e8e8 !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: #212121 !important;
+    padding: 12px !important;
+}
+
+/* Estilos para filas alternadas */
+.form_socios tbody tr:nth-child(even) {
+    background-color: #1a1a1a !important;
+}
+
+/* Efecto hover en las filas */
+.form_socios tbody tr:hover {
+    background-color: #232323 !important;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para scroll horizontal */
 .table-responsive {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en dispositivos móviles */
-}
-.body_login{
-    background-image: url(https://i.postimg.cc/rmgPbtck/Green-and-White-Simple-Golf-Club-Presentation-4.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.container_login{
-    background-color:rgb(198, 168, 52, 0.8);
-   
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #171717;
 }
 
-.btn-primary{
-    background-color: rgb(241, 103, 55) !important;
-    border-radius:  rgb(241, 103, 55)    !important;
+/* Estilos para scrollbar en navegadores webkit */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #171717;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 4px;
+}
+
+/* Estilos para botones */
+.form_socios .btn {
+    margin: 2px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.form_socios .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.form_socios .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.form_socios .btn:hover {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+/* Estilos para contenedores */
+.container {
+    padding: 20px;
+}
+
+/* Estilos para títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para mensajes de alerta */
+.alert {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para formularios */
+.form-control {
+    background-color: #e8e8e8 !important;
+    border-color: #333 !important;
+    color: rgb(9, 4, 4) !important;
+}
+
+.form-control:focus {
+    background-color: #2a2a2a !important;
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Estilos para etiquetas de formulario */
+.form-label {
+    color: rgb(0, 0, 0) !important;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos para login */
+.body_login {
+    /* background-image: url(https://i.postimg.cc/rmgPbtck/Green-and-White-Simple-Golf-Club-Presentation-4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh; */
+    background-color: #171717;
+    color: white !important;
+}
+
+
+/* Estilos para tarjetas */
+.card {
+    background-color: #e8e8e8!important;
+    border-color: #333 !important;
+}
+
+.card-header {
+    background-color: #1a1a1a !important;
+    border-bottom-color: #333 !important;
+}
+
+.card-body {
+    color: white !important;
+}
+
+/* Estilos para paginación */
+.pagination .page-link {
+    background-color: #232323;
+    border-color: #333;
+    color: white;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Utilidades adicionales */
+.text-white {
+    color: white !important;
+}
+
+.border-dark {
+    border-color: #333 !important;
+}
+
+/* Estilos para el editar socios */
+.table-group-divider {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    
 }
