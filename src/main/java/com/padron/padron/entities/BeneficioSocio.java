@@ -20,7 +20,7 @@ public class BeneficioSocio {
     @Column(nullable = false, length = 100)
     private String nombreBeneficio;
 
-    @Column(length = 255)
+    @Column(length = 500)
     private String descripcion;
 
     private LocalDate fechaInicio;

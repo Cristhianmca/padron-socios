@@ -2,6 +2,7 @@ package com.padron.padron.entities;
 
 import lombok.Data;
 
+
 @Data
 public class UsuarioDto {
 

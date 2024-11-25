@@ -20,6 +20,7 @@ public class SociosDto {
     private String ocupacion;
     private char genero;
     private LocalDate fechaAfiliacion;
+    private String clave;
     private int estado;
     private int tipo;
 }

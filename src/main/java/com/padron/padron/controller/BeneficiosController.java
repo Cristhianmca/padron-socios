@@ -20,6 +20,8 @@ import com.padron.padron.services.BeneficioSocioService;
 import com.padron.padron.services.BeneficiosPorSocioService;
 import com.padron.padron.services.SociosService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/beneficios")
 public class BeneficiosController {
@@ -128,15 +130,59 @@ public class BeneficiosController {
         }
     }
 
-    @GetMapping("/listar-por-socio")
-    public String listarBeneficiosPorSocio(@RequestParam("socioId") Long socioId, Model model) {
-        Socios socio = sociosService.leeIdSocios(socioId);
-        if (socio == null) {
-            throw new RuntimeException("Socio no encontrado");
-        }
-        List<BeneficioPorSocio> beneficiosPorSocio = beneficiosPorSocioService.obtenerBeneficiosPorSocio(socioId);
-        model.addAttribute("socio", socio);
-        model.addAttribute("beneficiosPorSocio", beneficiosPorSocio);
-        return "beneficios/listar-beneficios-por-socio";
+   @GetMapping("/listar-por-socio")
+public String listarBeneficiosPorSocio(@RequestParam("socioId") Long socioId, Model model, HttpSession session) {
+    if (session.getAttribute("tiposession") == null) {
+        return "redirect:/usuario/login";
     }
+    Socios socio = sociosService.leeIdSocios(socioId);
+    if (socio == null) {
+        throw new RuntimeException("Socio no encontrado");
+    }
+    List<BeneficioPorSocio> beneficiosPorSocio = beneficiosPorSocioService.obtenerBeneficiosPorSocio(socioId);
+    model.addAttribute("socio", socio);
+    model.addAttribute("beneficiosPorSocio", beneficiosPorSocio);
+    model.addAttribute("tiposession", session.getAttribute("tiposession"));
+    return "beneficios/listar-beneficios-por-socio";
+}
+    
+
+
+   
+
+    @PostMapping("/desactivar-beneficio-por-socio")
+    public String desactivarBeneficioPorSocio(@RequestParam("id") Long id, RedirectAttributes redirectAttributes) {
+        BeneficioPorSocio beneficioPorSocio = null;
+        try {
+            beneficioPorSocio = beneficiosPorSocioService.obtenerBeneficioPorId(id);
+            if (beneficioPorSocio != null) {
+                beneficioPorSocio.setEstado(0); // Cambia el estado a desactivado
+                beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
+                redirectAttributes.addFlashAttribute("message", "Beneficio por socio desactivado correctamente");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Beneficio por socio no encontrado");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al desactivar el beneficio: " + e.getMessage());
+        }
+        return "redirect:/beneficios/listar-por-socio?socioId=" + (beneficioPorSocio != null ? beneficioPorSocio.getSocio().getIdsocio() : "");
+    }
+    @PostMapping("/activar-beneficio-por-socio")
+public String activarBeneficioPorSocio(@RequestParam("id") Long id, RedirectAttributes redirectAttributes) {
+    BeneficioPorSocio beneficioPorSocio = null;
+    try {
+        beneficioPorSocio = beneficiosPorSocioService.obtenerBeneficioPorId(id);
+        if (beneficioPorSocio != null) {
+            beneficioPorSocio.setEstado(1); // Cambia el estado a activado
+            beneficiosPorSocioService.guardarBeneficioPorSocio(beneficioPorSocio);
+            redirectAttributes.addFlashAttribute("message", "Beneficio por socio activado correctamente");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Beneficio por socio no encontrado");
+        }
+    } catch (Exception e) {
+        redirectAttributes.addFlashAttribute("error", "Error al activar el beneficio: " + e.getMessage());
+    }
+    return "redirect:/beneficios/listar-por-socio?socioId=" + (beneficioPorSocio != null ? beneficioPorSocio.getSocio().getIdsocio() : "");
+}
+
 }

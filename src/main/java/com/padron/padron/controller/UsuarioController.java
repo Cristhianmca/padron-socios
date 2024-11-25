@@ -11,10 +11,12 @@ import com.padron.padron.entities.UsuarioDto;
 import com.padron.padron.services.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/usuario")
@@ -70,18 +72,21 @@ public class UsuarioController {
     }
 
     @PostMapping("/create")
-    public String createUsuario(@ModelAttribute("dto") UsuarioDto dto) {
-        Usuario usuario = new Usuario();
-        usuario.setDni(dto.getDni());
-        usuario.setApellidos(dto.getApellidos());
-        usuario.setNombres(dto.getNombres());
-        usuario.setClave(dto.getClave());
-        usuario.setTipo(dto.getTipo());
-        usuario.setEstado(dto.getEstado());
+public String createUsuario(@Valid @RequestBody @ModelAttribute UsuarioDto dto) {
+    
 
-        servicio.saveUsuario(usuario);
-        return "redirect:/usuario";
-    }
+    Usuario usuario = new Usuario();
+    usuario.setDni(dto.getDni());
+    usuario.setApellidos(dto.getApellidos());
+    usuario.setNombres(dto.getNombres());
+    usuario.setClave(dto.getClave());
+    usuario.setTipo(dto.getTipo());
+    usuario.setEstado(dto.getEstado());
+
+    servicio.saveUsuario(usuario);
+    return "redirect:/usuario";
+}
+
 
     @GetMapping("/edit")
     public String editUsuario(Model model, @RequestParam Long id, HttpSession session) {

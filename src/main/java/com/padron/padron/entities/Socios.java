@@ -42,7 +42,9 @@ public class Socios {
     private char genero;
     @Column(length = 20 , nullable = false)
     private LocalDate fechaAfiliacion;
-    @Column(length = 1 , nullable = false)
+    
+    @Column(length = 15, nullable = false)
+    private String clave;
     @ColumnDefault("1")
     private int estado;
     @Column(length = 1 , nullable = false)

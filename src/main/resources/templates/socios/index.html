@@ -4,26 +4,21 @@
 </head>
 <link rel="stylesheet" href="/css/index.css">
 
-
-
 <body class="body_socios">
   <div class="socios_nav">
-   <nav  th:replace="/componente/navbar :: navbar"></nav>  
+   <nav th:replace="/componente/navbar :: navbar"></nav>  
   </div>
  
-  
-   <!-- <center> <img src="https://i.postimg.cc/2jn8Lc0L/Banner-Horizontal-Promoci-n-futbol-moderno-rojo.jpg" width="1000" height="300" alt=""></center> -->
-  
   <div class="container mb-3">
     <h1 class="text-center">Lista de Socios</h1>
     <a class="btn btn-outline-warning mb-2" href="/socios/create">Nuevo Socio</a>
 
     <!-- Contenedor con scroll horizontal -->
-    <div class="table-responsive form_socios ">
-        <table class="table table-striped form_socios ">
-            <thead class="form_socios" >
+    <div class="table-responsive form_socios">
+        <table class="table table-striped form_socios">
+            <thead class="form_socios">
                 <tr class="form_socios">
-                    <th >ID</th>
+                    <th>ID</th>
                     <th>DNI</th>
                     <th>NOMBRES</th>
                     <th>APELLIDO P.</th>
@@ -41,24 +36,24 @@
                 </tr>
             </thead>
             <tbody class="form_socios">
-                <tr class="form_socios" th:each="socios : ${socios}">
-                    <td th:text="${socios.idsocio}"></td>
-                    <td th:text="${socios.dni}"></td>
-                    <td th:text="${socios.nombre}"></td>
-                    <td th:text="${socios.apellidoP}"></td>
-                    <td th:text="${socios.apellidoM}"></td>
-                    <td th:text="${socios.correo}"></td>
-                    <td th:text="${socios.telefono}"></td>
-                    <td th:text="${socios.direccion}"></td>
-                    <td th:text="${socios.fechaNacimiento}"></td>
-                    <td th:text="${socios.ocupacion}"></td>
-                    <td th:text="${socios.genero}"></td>
-                    <td th:text="${socios.fechaAfiliacion}"></td>
-                    <td th:text="${socios.estado}"></td>
-                    <td th:text="${socios.tipo == 1 ? 'Admin' : usuario.tipo == 2 ? 'User' : 'otro'}"></td>
+                <tr class="form_socios" th:each="socio : ${socios}">
+                    <td th:text="${socio.idsocio}"></td>
+                    <td th:text="${socio.dni}"></td>
+                    <td th:text="${socio.nombre}"></td>
+                    <td th:text="${socio.apellidoP}"></td>
+                    <td th:text="${socio.apellidoM}"></td>
+                    <td th:text="${socio.correo}"></td>
+                    <td th:text="${socio.telefono}"></td>
+                    <td th:text="${socio.direccion}"></td>
+                    <td th:text="${socio.fechaNacimiento}"></td>
+                    <td th:text="${socio.ocupacion}"></td>
+                    <td th:text="${socio.genero}"></td>
+                    <td th:text="${socio.fechaAfiliacion}"></td>
+                    <td th:text="${socio.estado}"></td>
+                    <td th:text="${socio.tipo == 1 ? 'Admin' : socio.tipo == 2 ? 'User' : 'otro'}"></td>
                     <td style="white-space: nowrap;">
-                        <a class="btn btn-primary btn-sm" th:href="@{/socios/edit(id=${socios.idsocio})}">Editar</a>
-                        <a class="btn btn-danger btn-sm" th:href="@{/socios/delete(id=${socios.idsocio})}">Borrar</a>
+                        <a class="btn btn-primary btn-sm" th:href="@{/socios/edit(id=${socio.idsocio})}">Editar</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/socios/delete(id=${socio.idsocio})}">Borrar</a>
                     </td>
                 </tr>
             </tbody>
@@ -89,8 +84,6 @@
     </div>
   </div>
 
-
   <footer th:replace="/componente/footer :: footer"></footer>
 </body>
-
 </html>

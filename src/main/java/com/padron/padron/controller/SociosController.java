@@ -1,42 +1,79 @@
 package com.padron.padron.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.padron.padron.entities.BeneficioPorSocio;
 import com.padron.padron.entities.Socios;
 import com.padron.padron.entities.SociosDto;
+import com.padron.padron.services.BeneficiosPorSocioService;
 import com.padron.padron.services.SociosService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/socios")
-
 public class SociosController {
 
-
     @Autowired
-   private SociosService service;
+    private SociosService service;
+    @Autowired
+    private BeneficiosPorSocioService beneficioPorSocioService;
 
     @GetMapping({ "", "/" })
     public String getSocios(Model model, HttpSession session) {
-        if(session.getAttribute("tiposession")== null ){
+        if (session.getAttribute("tiposession") == null) {
             return "redirect:/usuario/login";
         }
-        var Socios = service.listarSocios();
-        model.addAttribute("socios", Socios);
+        var socios = service.listarSocios();
+        model.addAttribute("socios", socios);
         return "socios/index";
     }
 
+    @GetMapping("/perfil")
+    public String mostrarPerfil(Model model, HttpSession session) {
+        Long idSocio = (Long) session.getAttribute("idsession");
+        if (idSocio == null) {
+            return "redirect:/usuario/login";
+        }
+        Socios socio = service.leeIdSocios(idSocio);
+        List<BeneficioPorSocio> beneficios = beneficioPorSocioService.obtenerBeneficiosPorSocio(idSocio);
+        model.addAttribute("socio", socio);
+        model.addAttribute("beneficios", beneficios);
+        return "socios/perfil";
+    }
+    @PostMapping("/login")
+    public String procesarLogin(@ModelAttribute("socio") SociosDto socio, HttpSession session) {
+        Socios socioValido = service.leeLogin(socio.getDni(), socio.getClave());
+
+        if (socioValido != null) {
+            session.setAttribute("tiposession", socioValido.getTipo());
+            session.setAttribute("usuario", socioValido);
+            return "redirect:/socios"; 
+        } else {
+            return "redirect:/usuario/login?error"; 
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); 
+        return "redirect:/usuario/login"; 
+    }
+
     @GetMapping("/create")
-    public String createSocios(Model model, HttpSession session){
-         if(session.getAttribute("tiposession")== null ){
+    public String createSocios(Model model, HttpSession session) {
+        if (session.getAttribute("tiposession") == null) {
             return "redirect:/usuario/login";
         }
         SociosDto dto = new SociosDto();
@@ -45,7 +82,7 @@ public class SociosController {
     }
 
     @PostMapping("/create")
-    public String createSocios(@ModelAttribute("dto") SociosDto dto){
+    public String createSocios(@Valid @ModelAttribute("dto") SociosDto dto) {
         Socios socio = new Socios();
         socio.setDni(dto.getDni());
         socio.setNombre(dto.getNombre());
@@ -58,24 +95,22 @@ public class SociosController {
         socio.setOcupacion(dto.getOcupacion());
         socio.setGenero(dto.getGenero());
         socio.setFechaAfiliacion(dto.getFechaAfiliacion());
+        socio.setClave(dto.getClave());
         socio.setEstado(dto.getEstado());
         socio.setTipo(dto.getTipo());
 
         service.guardarSocios(socio);
         return "redirect:/socios";
-
-       
-    }   
+    }
 
     @GetMapping("/edit")
-    public String editarSocios(Model model,@RequestParam Long id , HttpSession session){
-        if(session.getAttribute("tiposession")== null ){
+    public String editarSocios(Model model, @RequestParam Long id, HttpSession session) {
+        if (session.getAttribute("tiposession") == null) {
             return "redirect:/usuario/login";
         }
         Socios socio = service.leeIdSocios(id);
         if (socio == null) {
             return "redirect:/socios";
-            
         }
         SociosDto dto = new SociosDto();
         dto.setDni(socio.getDni());
@@ -97,7 +132,7 @@ public class SociosController {
     }
 
     @PostMapping("/edit")
-    public String editarSocio(@RequestParam Long id,@ModelAttribute("dto") SociosDto dto){
+    public String editarSocio(@RequestParam Long id, @ModelAttribute("dto") SociosDto dto) {
         Socios socio = service.leeIdSocios(id);
         socio.setDni(dto.getDni());
         socio.setNombre(dto.getNombre());
@@ -117,8 +152,8 @@ public class SociosController {
     }
 
     @GetMapping("/delete")
-    public String eliminarSocio(@RequestParam Long id, HttpSession session){
-        if(session.getAttribute("tiposession")== null ){
+    public String eliminarSocio(@RequestParam Long id, HttpSession session) {
+        if (session.getAttribute("tiposession") == null) {
             return "redirect:/usuario/login";
         }
         service.eliminarSocio(id);

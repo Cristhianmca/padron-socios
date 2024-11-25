@@ -38,8 +38,15 @@
                                         <td th:text="${beneficioPorSocio.fechaFin}"></td>
                                         <td th:text="${beneficioPorSocio.estado == 1 ? 'Activo' : 'Inactivo'}"></td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" th:href="@{/beneficios/editar-beneficio-por-socio(id=${beneficioPorSocio.beneficio.id})}">Editar</a>
-                                            <a class="btn btn-danger btn-sm" th:href="@{/beneficios/eliminar(id=${beneficioPorSocio.beneficio.id})}">Eliminar</a>
+                                            <a class="btn btn-primary btn-sm" th:href="@{/beneficios/editar-beneficio-por-socio(id=${beneficioPorSocio.beneficio.id})}" th:if="${tiposession == 'ADMIN'}">Editar</a>
+                                            <form th:action="@{/beneficios/desactivar-beneficio-por-socio}" method="post" style="display:inline;" th:if="${beneficioPorSocio.estado == 1 and tiposession == 'ADMIN'}">
+                                                <input type="hidden" name="id" th:value="${beneficioPorSocio.id}" />
+                                                <button type="submit" class="btn btn-danger btn-sm">Desactivar</button>
+                                            </form>
+                                            <form th:action="@{/beneficios/activar-beneficio-por-socio}" method="post" style="display:inline;" th:if="${beneficioPorSocio.estado == 0 and tiposession == 'ADMIN'}">
+                                                <input type="hidden" name="id" th:value="${beneficioPorSocio.id}" />
+                                                <button type="submit" class="btn btn-success btn-sm">Activar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </tbody>

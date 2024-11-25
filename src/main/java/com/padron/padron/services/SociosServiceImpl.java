@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.padron.padron.entities.Socios;
+
 import com.padron.padron.repository.SociosRepository;
 
 @Service
@@ -33,5 +34,10 @@ public class SociosServiceImpl implements SociosService {
     public void eliminarSocio(Long id){
         repository.deleteById(id);
     }
+    @Override
+    public Socios leeLogin(String dni, String clave) {
+        return repository.leeLogin(dni, clave);
+    }
+
 
 }
