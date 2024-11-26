@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.padron.padron.entities.BeneficioPorSocio;
-import com.padron.padron.repository.BeneficiosPorSocioRepository;
+import com.padron.padron.repository.BeneficioPorSocioRepository;
+
 
 @Service
 public class BeneficiosPorSocioServiceImpl implements BeneficiosPorSocioService {
 
     @Autowired
-    private BeneficiosPorSocioRepository beneficiosPorSocioRepository;
+    private BeneficioPorSocioRepository beneficiosPorSocioRepository;
 
     @Override
     public BeneficioPorSocio guardarBeneficioPorSocio(BeneficioPorSocio beneficiosPorSocio) {

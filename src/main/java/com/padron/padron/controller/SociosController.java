@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,10 +47,17 @@ public class SociosController {
         }
         Socios socio = service.leeIdSocios(idSocio);
         List<BeneficioPorSocio> beneficios = beneficioPorSocioService.obtenerBeneficiosPorSocio(idSocio);
+    
+        // Log para depuración
+        System.out.println("Socio: " + socio);
+        System.out.println("Beneficios: " + beneficios);
+    
         model.addAttribute("socio", socio);
         model.addAttribute("beneficios", beneficios);
         return "socios/perfil";
     }
+    
+
     @PostMapping("/login")
     public String procesarLogin(@ModelAttribute("socio") SociosDto socio, HttpSession session) {
         Socios socioValido = service.leeLogin(socio.getDni(), socio.getClave());
