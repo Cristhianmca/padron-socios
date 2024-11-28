@@ -34,8 +34,18 @@ public class SociosController {
         if (session.getAttribute("tiposession") == null) {
             return "redirect:/usuario/login";
         }
-        var socios = service.listarSocios();
+        Long idSocio = (Long) session.getAttribute("idsession");
+        Integer tipoSession = (Integer) session.getAttribute("tiposession");
+        if (tipoSession == 1) {
+            var socios = service.listarSocios();
         model.addAttribute("socios", socios);
+        }else if (tipoSession == 2) {
+            Socios socio = service.leeIdSocios(idSocio);
+            model.addAttribute("socios", List.of(socio));
+            
+        }
+        
+
         return "socios/index";
     }
 

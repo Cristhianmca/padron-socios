@@ -10,14 +10,14 @@
  
   <div class="container mb-3">
     <h1 class="text-center text-dark">Lista de Socios</h1>
-    <a class="btn btn-outline-warning mb-2" href="/socios/create">Nuevo Socio</a>
+    <a class="btn btn-outline-warning mb-2" th:if="${session.tiposession == 1}" href="/socios/create">Nuevo Socio</a>
 
     <!-- Contenedor con scroll horizontal -->
     <div class="table-responsive form_socios">
         <table class="table table-striped form_socios">
             <thead class="form_socios">
                 <tr class="form_socios">
-                    <th>ID</th>
+                    <th th:if="${session.tiposession == 1}">ID</th>
                     <th>DNI</th>
                     <th>NOMBRES</th>
                     <th>APELLIDO P.</th>
@@ -31,12 +31,12 @@
                     <th>F. AFILIACION</th>
                     <th>ESTADO</th>
                     <th>TIPO</th>
-                    <th>Acciones</th>
+                    <th th:if="${session.tiposession == 1}">Acciones</th>
                 </tr>
             </thead>
             <tbody class="form_socios">
                 <tr class="form_socios" th:each="socio : ${socios}">
-                    <td th:text="${socio.idsocio}"></td>
+                    <td th:if="${session.tiposession == 1}" th:text="${socio.idsocio}"></td>
                     <td th:text="${socio.dni}"></td>
                     <td th:text="${socio.nombre}"></td>
                     <td th:text="${socio.apellidoP}"></td>
@@ -48,11 +48,11 @@
                     <td th:text="${socio.ocupacion}"></td>
                     <td th:text="${socio.genero}"></td>
                     <td th:text="${socio.fechaAfiliacion}"></td>
-                    <td th:text="${socio.estado}"></td>
+                    <td th:text="${socio.estado == 1 ? 'Activo' : (socio.estado == 2 ? 'Inactivo' : 'Desconocido' )}"></td>
                     <td th:text="${socio.tipo == 1 ? 'Admin' : socio.tipo == 2 ? 'User' : 'otro'}"></td>
                     <td style="white-space: nowrap;">
-                        <a class="btn btn-primary btn-sm" th:href="@{/socios/edit(id=${socio.idsocio})}">Editar</a>
-                        <a class="btn btn-danger btn-sm" th:href="@{/socios/delete(id=${socio.idsocio})}">Borrar</a>
+                        <a class="btn btn-primary btn-sm" th:if="${session.tiposession == 1}" th:href="@{/socios/edit(id=${socio.idsocio})}">Editar</a>
+                        <a class="btn btn-danger btn-sm" th:if="${session.tiposession == 1}" th:href="@{/socios/delete(id=${socio.idsocio})}">Borrar</a>
                     </td>
                 </tr>
             </tbody>
@@ -60,14 +60,14 @@
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5" th:if="${session.tiposession == 1}">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
           <div class="card-header text-center">
             <h3>Buscar Beneficios por Socio</h3>
           </div>
-          <div class="card-body">
+          <div class="card-body">   
             <form th:action="@{/beneficios/listar-por-socio}" method="get">
               <div class="mb-3">
                 <label for="socioId" class="form-label">ID del Socio</label>

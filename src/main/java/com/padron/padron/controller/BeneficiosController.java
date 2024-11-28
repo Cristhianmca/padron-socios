@@ -36,7 +36,10 @@ public class BeneficiosController {
     private BeneficiosPorSocioService beneficiosPorSocioService;
 
     @GetMapping("")
-    public String listarBeneficios(Model model) {
+    public String listarBeneficios(Model model, HttpSession session) {
+        if (session.getAttribute("tiposession") == null) {
+            return "redirect:/usuario/login";
+        }
         model.addAttribute("beneficios", beneficioService.obtenerTodosLosBeneficios());
         return "beneficios/listar-beneficios";
     }
