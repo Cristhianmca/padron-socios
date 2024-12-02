@@ -1,117 +1,141 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="/componente/head :: head"> </head>
-  <link rel="stylesheet" href="/css/index.css">
-  
-
-  <body>
-    <div class="socios_create_nav">
-    <nav  th:replace="/componente/navbar :: navbar"></nav>  
-    </div>
+  <head th:replace="/componente/head :: head">
+  </head>
+  <link rel="stylesheet" href="/css/padron.css">
+  <body >
+   
+      <nav th:replace="/componente/navbar :: navbar"></nav>
     
-    <div class="row">
-      <div class="col-md-8 mx-auto rounded border p-4">
-        <h1 class="text-center md-5">Nuevo Socio</h1>
+    
+    <!-- Formulario para crear nuevo socio -->
+    <div class="row mt-5">
+      <div class="container_nuevo col-md-8 mx-auto rounded border p-4" style="background: rgba(10, 10, 42, 0.8);">
+        <h1 class="text-center text-white">Nuevo Socio</h1>
 
         <form th:action="@{/socios/create}" method="post" th:object="${dto}">
+          
+          <!-- Campo DNI -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">dni</label>
+            <label class="col-sm-4 col-form-label text-white">DNI</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.dni}" />
             </div>
           </div>
 
+          <!-- Campo Nombres -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Nombres</label>
+            <label class="col-sm-4 col-form-label text-white">Nombres</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.nombre}" />
             </div>
           </div>
+
+          <!-- Campo Apellido Paterno -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Apellido Paterno</label>
+            <label class="col-sm-4 col-form-label text-white">Apellido Paterno</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.apellidoP}" />
             </div>
           </div>
+
+          <!-- Campo Apellido Materno -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Apellido Materno</label>
+            <label class="col-sm-4 col-form-label text-white">Apellido Materno</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.apellidoM}" />
             </div>
           </div>
+
+          <!-- Campo Correo -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Correo</label>
+            <label class="col-sm-4 col-form-label text-white">Correo</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.correo}" />
             </div>
           </div>
+
+          <!-- Campo Teléfono -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Telefono</label>
+            <label class="col-sm-4 col-form-label text-white">Teléfono</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.telefono}" />
             </div>
           </div>
+
+          <!-- Campo Dirección -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Direccion</label>
+            <label class="col-sm-4 col-form-label text-white">Dirección</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.direccion}" />
             </div>
           </div>
+
+          <!-- Campo Fecha de Nacimiento -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
+            <label class="col-sm-4 col-form-label text-white">Fecha de Nacimiento</label>
             <div class="col-sm-8">
               <input type="date" class="form-control" th:field="${dto.fechaNacimiento}" />
             </div>
           </div>
+
+          <!-- Campo Ocupación -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Ocupacion</label>
+            <label class="col-sm-4 col-form-label text-white">Ocupación</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.ocupacion}" />
             </div>
           </div>
+
+          <!-- Campo Género -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Genero</label>
+            <label class="col-sm-4 col-form-label text-white">Género</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.genero}" />
             </div>
           </div>
+
+          <!-- Campo Fecha de Afiliación -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Fecha de Afiliacion</label>
+            <label class="col-sm-4 col-form-label text-white">Fecha de Afiliación</label>
             <div class="col-sm-8">
               <input type="date" class="form-control" th:field="${dto.fechaAfiliacion}" />
             </div>
-
           </div>
 
+          <!-- Campo Clave -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Clave</label>
+            <label class="col-sm-4 col-form-label text-white">Clave</label>
             <div class="col-sm-8">
                 <input type="password" class="form-control" th:field="${dto.clave}" />
             </div>
-        </div>
+          </div>
 
+          <!-- Campo Estado -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Estado</label>
+            <label class="col-sm-4 col-form-label text-white">Estado</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.estado}" />
             </div>
           </div>
 
+          <!-- Campo Tipo -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label">Tipo</label>
+            <label class="col-sm-4 col-form-label text-white">Tipo</label>
             <div class="col-sm-8">
               <input class="form-control" th:field="${dto.tipo}" />
             </div>
           </div>
 
+          <!-- Botones -->
           <div class="row">
             <div class="offset-sm-4 col-sm-4 d-grid">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn cta-button">
                 Grabar
               </button>
             </div>
             <div class="col-sm-4 d-grid">
-              <a class="btn btn-outline-primary" href="/socios">volver</a>
+              <a class="btn btn-outline-primary" href="/socios">Volver</a>
             </div>
           </div>
         </form>

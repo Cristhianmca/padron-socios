@@ -3,54 +3,51 @@
 <head th:replace="/componente/head :: head"> 
 </head>
 
-<link rel="stylesheet" href="/css/index.css">
+
+<link rel="stylesheet" href="/css/padron.css">
 
 <body class="body_socios">
+
   <div class="usuario_nav">
     <nav th:replace="/componente/navbar :: navbar"></nav>
   </div>
   
   <div class="container mb-3">
-    <h1 class="text-center text-dark ">Lista de Usuarios</h1>
-    <a class="btn btn-outline-warning" href="/usuario/create">Nuevo Usuario</a>
+    <h1 class="text-center text-white">Lista de Usuarios</h1>
+    <a class="btn cta-button mb-3" href="/usuario/create">Nuevo Usuario</a>
 
-    <table class="table ">
-      <thead >
-        <tr >
-          <th>Id</th>
-          <th>DNI</th>
-          <th>APELLIDOS</th>
-          <th>NOMBRES</th>
-          <th>CLAVE</th>
-          <th>TIPO</th>
-          <th>Acciones</th>
-
-        </tr>
-      <tbody class="table-group-divider ">
-        <tr clas th:each="usuario: ${usuario}">
-          <td th:text="${usuario.idusuario}" ></td>
-          <td th:text="${usuario.dni}" ></td>
-          <td th:text="${usuario.apellidos}" ></td>
-          <td th:text="${usuario.nombres}" ></td>
-          <td th:text="${usuario.clave}"></td>
-          <td  th:text="${usuario.tipo == 1 ? 'Admin' : usuario.tipo == 2 ? 'User' : 'otro'}"></td>
-
-          <td style="white-space:nowrap">
-            <a class="btn btn-primary btn-sm" th:href="@{/usuario/edit(id=${usuario.idusuario})}">Editar</a>
-            <a class="btn btn-danger btn-sm" th:href="@{/usuario/delete(id=${usuario.idusuario})}">Borrar</a>
-
-          </td>
-
-        </tr>
-      </tbody>
-      </thead>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped" style="color: white;">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>DNI</th>
+            <th>APELLIDOS</th>
+            <th>NOMBRES</th>
+            <th>CLAVE</th>
+            <th>TIPO</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr th:each="usuario : ${usuario}">
+            <td th:text="${usuario.idusuario}"></td>
+            <td th:text="${usuario.dni}"></td>
+            <td th:text="${usuario.apellidos}"></td>
+            <td th:text="${usuario.nombres}"></td>
+            <td th:text="${usuario.clave}"></td>
+            <td th:text="${usuario.tipo == 1 ? 'Admin' : usuario.tipo == 2 ? 'User' : 'otro'}"></td>
+            <td style="white-space: nowrap;">
+              <a class="btn btn-primary btn-sm" th:href="@{/usuario/edit(id=${usuario.idusuario})}">Editar</a>
+              <a class="btn btn-danger btn-sm" th:href="@{/usuario/delete(id=${usuario.idusuario})}">Borrar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-
-
-
   <footer th:replace="/componente/footer :: footer"></footer>
-</body>
 
+</body>
 </html>

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/componente/head :: head"> 
+<head th:replace="/componente/head :: head">
+   
+    
 </head>
-<link rel="stylesheet" href="/css/index.css">
-
-  
+<link rel="stylesheet" href="/css/padron.css">
 <body class="body_socios">
-  <nav  th:replace="/componente/navbar :: navbar"></nav> 
- 
-  <div class="container mb-3">
-    <h1 class="text-center text-dark">Lista de Socios</h1>
-    <a class="btn btn-outline-warning mb-2" th:if="${session.tiposession == 1}" href="/socios/create">Nuevo Socio</a>
+  <nav th:replace="/componente/navbar :: navbar"></nav>
 
-    <!-- Contenedor con scroll horizontal -->
-    <div class="table-responsive form_socios">
-        <table class="table table-striped form_socios">
-            <thead class="form_socios">
-                <tr class="form_socios">
+  <!-- Lista de Socios -->
+  <div class="container mb-5">
+    <h1 class="text-center text-white">Lista de Socios</h1>
+    <a class="btn cta-button mb-2" th:if="${session.tiposession == 1}" href="/socios/create">Nuevo Socio</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
                     <th th:if="${session.tiposession == 1}">ID</th>
                     <th>DNI</th>
                     <th>NOMBRES</th>
@@ -34,8 +34,8 @@
                     <th th:if="${session.tiposession == 1}">Acciones</th>
                 </tr>
             </thead>
-            <tbody class="form_socios">
-                <tr class="form_socios" th:each="socio : ${socios}">
+            <tbody>
+                <tr th:each="socio : ${socios}">
                     <td th:if="${session.tiposession == 1}" th:text="${socio.idsocio}"></td>
                     <td th:text="${socio.dni}"></td>
                     <td th:text="${socio.nombre}"></td>
@@ -50,7 +50,7 @@
                     <td th:text="${socio.fechaAfiliacion}"></td>
                     <td th:text="${socio.estado == 1 ? 'Activo' : (socio.estado == 2 ? 'Inactivo' : 'Desconocido' )}"></td>
                     <td th:text="${socio.tipo == 1 ? 'Admin' : socio.tipo == 2 ? 'User' : 'otro'}"></td>
-                    <td style="white-space: nowrap;">
+                    <td class="actions" style="white-space: nowrap;">
                         <a class="btn btn-primary btn-sm" th:if="${session.tiposession == 1}" th:href="@{/socios/edit(id=${socio.idsocio})}">Editar</a>
                         <a class="btn btn-danger btn-sm" th:if="${session.tiposession == 1}" th:href="@{/socios/delete(id=${socio.idsocio})}">Borrar</a>
                     </td>
@@ -58,23 +58,24 @@
             </tbody>
         </table>
     </div>
-</div>
+  </div>
 
-<div class="container mt-5" th:if="${session.tiposession == 1}">
+  <!-- Buscar Beneficios -->
+  <div class="container mt-5" th:if="${session.tiposession == 1}">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card" style="background: rgba(10, 10, 42, 0.8);">
           <div class="card-header text-center">
-            <h3>Buscar Beneficios por Socio</h3>
+            <h3 class="text-white">Buscar Beneficios por Socio</h3>
           </div>
           <div class="card-body">   
             <form th:action="@{/beneficios/listar-por-socio}" method="get">
               <div class="mb-3">
-                <label for="socioId" class="form-label">ID del Socio</label>
+                <label for="socioId" class="form-label text-white">ID del Socio</label>
                 <input type="text" id="socioId" name="socioId" class="form-control" required>
               </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Ver Beneficios</button>
+                <button type="submit" class="btn cta-button">Ver Beneficios</button>
               </div>
             </form>
           </div>
@@ -84,5 +85,7 @@
   </div>
 
   <footer th:replace="/componente/footer :: footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

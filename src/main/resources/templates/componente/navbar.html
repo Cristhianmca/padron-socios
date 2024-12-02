@@ -1,4 +1,4 @@
-
+<!-- 
 
 
 <nav th:fragment="navbar" class="navbar navbar_nav navbar-expand-lg">
@@ -38,4 +38,64 @@
             Salir <i class="fas fa-sign-out-alt"></i>
         </a>
     </div>
-</nav>
+</nav> -->
+
+<link rel="stylesheet" href="/css/padron.css">
+<header  th:fragment="navbar">
+    <nav>
+        <div class="logo" th:href="@{/}">Club Cósmico</div>
+        <ul class="nav-links">
+            <li >
+                <a href="#inicio" th:href="@{/}" >Inicio</a></li>
+            <li >
+                <a href="#constelaciones" th:href="@{/socios}">Socio</a></li>
+            <li th:if="${session.tiposession == 1}">
+                <a href="#nebulosas" th:href="@{/beneficios}">Beneficios</a></li>
+            <li th:if="${session.tiposession == 1}">
+                <a href="#galaxias">Reporte</a></li>
+            <li th:if="${session.tiposession == 1}">
+                <a href="#contacto" th:href="@{/usuario}">Usuario</a></li>
+            <li th:if="${session.tiposession != null}">
+                <a href="#contacto" th:href="@{/socios/perfil}">Perfil</a></li>
+        </ul>
+        <a th:if="${session.tiposession == null}"  th:href="@{/usuario/login}">
+            Ingresar <i class="fas fa-user"></i>
+        </a>
+        <a th:if="${session.tiposession != null}" class="cta-button" th:href="@{/usuario/logout}">
+            Salir <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </nav>
+</header>
+
+<!-- <link rel="stylesheet" href="/css/padron.css">
+
+    <nav th:fragment="navbar">
+        <div class="logo">Club Cósmico</div>
+        <ul class="nav-links">
+            <li th:if="${session.tiposession == 1}">
+                <a th:href="@{/}">Inicio</a>
+            </li>
+            <li>
+                <a th:href="@{/socios}">Socio</a>
+            </li>
+            <li th:if="${session.tiposession == 1}">
+                <a th:href="@{/beneficios}">Beneficios</a>
+            </li>
+            <li th:if="${session.tiposession == 1}">
+                <a href="#">Reporte</a>
+            </li>
+            <li th:if="${session.tiposession == 1}">
+                <a th:href="@{/usuario}">Usuario</a>
+            </li>
+            <li th:if="${session.tiposession != null}">
+                <a th:href="@{/socios/perfil}">Perfil</a>
+            </li>
+        </ul>
+        <a th:if="${session.tiposession == null}" class="cta-button" th:href="@{/usuario/login}">
+            Ingresar <i class="fas fa-user"></i>
+        </a>
+        <a th:if="${session.tiposession != null}" class="cta-button" th:href="@{/usuario/logout}">
+            Salir <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </nav> -->
+
