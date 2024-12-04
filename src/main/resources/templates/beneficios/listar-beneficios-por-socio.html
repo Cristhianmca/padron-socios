@@ -7,15 +7,15 @@
 <link rel="stylesheet" href="/css/padron.css">
 
 <body class="body_socios">
-    <!-- Navbar -->
+    <!-- Navbar --> 
     <nav th:replace="/componente/navbar :: navbar"></nav> 
 
-    <div class="container mt-5">
+    <div class="container container_nuevo mt-5">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3 class="text-white">Beneficios de <span th:text="${socio.nombre} + ' ' + ${socio.apellidoP}"></span></h3>
+                        <h3 class="text-black">Beneficios de <span th:text="${socio.nombre} + ' ' + ${socio.apellidoP}"></span></h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
