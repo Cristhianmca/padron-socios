@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="/componente/head :: head">
-  </head>
-  <link rel="stylesheet" href="/css/padron.css">
-  <body >
+  <head th:replace="/componente/head :: head"></head>
+  <link rel="stylesheet" href="/css/styles.css">
+  <body style="background-color: #f0f4f8;"> <!-- Fondo claro para toda la página -->
    
-      <nav th:replace="/componente/navbar :: navbar"></nav>
-    
-    
+    <nav th:replace="/componente/navbar :: navbar"></nav>
+
     <!-- Formulario para crear nuevo socio -->
     <div class="row mt-5">
-      <div class="container_nuevo col-md-8 mx-auto rounded border p-4" style="background: rgba(10, 10, 42, 0.8);">
-        <h1 class="text-center text-white">Nuevo Socio</h1>
+      <div class="container_nuevo col-md-8 mx-auto rounded border p-4" style="background: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+        <h1 class="text-center" style="color: #333;">Nuevo Socio</h1>
 
         <form th:action="@{/socios/create}" method="post" th:object="${dto}">
           
           <!-- Campo DNI -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">DNI</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">DNI</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.dni}" />
+              <input class="form-control" th:field="${dto.dni}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Nombres -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Nombres</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Nombres</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.nombre}" />
+              <input class="form-control" th:field="${dto.nombre}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Apellido Paterno -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Apellido Paterno</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Apellido Paterno</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.apellidoP}" />
+              <input class="form-control" th:field="${dto.apellidoP}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Apellido Materno -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Apellido Materno</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Apellido Materno</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.apellidoM}" />
+              <input class="form-control" th:field="${dto.apellidoM}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Correo -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Correo</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Correo</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.correo}" />
+              <input class="form-control" th:field="${dto.correo}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Teléfono -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Teléfono</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Teléfono</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.telefono}" />
+              <input class="form-control" th:field="${dto.telefono}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Dirección -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Dirección</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Dirección</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.direccion}" />
+              <input class="form-control" th:field="${dto.direccion}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Fecha de Nacimiento -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Fecha de Nacimiento</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Fecha de Nacimiento</label>
             <div class="col-sm-8">
-              <input type="date" class="form-control" th:field="${dto.fechaNacimiento}" />
+              <input type="date" class="form-control" th:field="${dto.fechaNacimiento}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Ocupación -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Ocupación</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Ocupación</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.ocupacion}" />
+              <input class="form-control" th:field="${dto.ocupacion}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Género -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Género</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Género</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.genero}" />
+              <input class="form-control" th:field="${dto.genero}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Fecha de Afiliación -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Fecha de Afiliación</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Fecha de Afiliación</label>
             <div class="col-sm-8">
-              <input type="date" class="form-control" th:field="${dto.fechaAfiliacion}" />
+              <input type="date" class="form-control" th:field="${dto.fechaAfiliacion}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Clave -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Clave</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Clave</label>
             <div class="col-sm-8">
-                <input type="password" class="form-control" th:field="${dto.clave}" />
+              <input type="password" class="form-control" th:field="${dto.clave}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Estado -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Estado</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Estado</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.estado}" />
+              <input class="form-control" th:field="${dto.estado}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Campo Tipo -->
           <div class="row mb-3">
-            <label class="col-sm-4 col-form-label text-white">Tipo</label>
+            <label class="col-sm-4 col-form-label" style="color: #555;">Tipo</label>
             <div class="col-sm-8">
-              <input class="form-control" th:field="${dto.tipo}" />
+              <input class="form-control" th:field="${dto.tipo}" style="border-radius: 8px;"/>
             </div>
           </div>
 
           <!-- Botones -->
           <div class="row">
             <div class="offset-sm-4 col-sm-4 d-grid">
-              <button type="submit" class="btn cta-button">
+              <button type="submit" class="btn btn-primary" style="border-radius: 8px; background-color: #007bff; border: none; color: white;">
                 Grabar
               </button>
             </div>
             <div class="col-sm-4 d-grid">
-              <a class="btn btn-outline-primary" href="/socios">Volver</a>
+              <a class="btn btn-outline-secondary" href="/socios" style="border-radius: 8px; color: #007bff;">
+                Volver
+              </a>
             </div>
           </div>
         </form>

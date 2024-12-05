@@ -1,5 +1,6 @@
 package com.padron.padron.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.padron.padron.entities.BeneficioPorSocio;
+import com.padron.padron.entities.ExcelExporter;
 import com.padron.padron.entities.Socios;
 import com.padron.padron.entities.SociosDto;
 import com.padron.padron.services.BeneficiosPorSocioService;
 import com.padron.padron.services.SociosService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -175,4 +178,23 @@ public class SociosController {
         service.eliminarSocio(id);
         return "redirect:/socios";
     }
+    
+    @GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=socios.xlsx";
+        response.setHeader(headerKey, headerValue);
+    
+        List<Socios> listSocios = service.listarSocios();
+    
+        ExcelExporter excelExporter = new ExcelExporter(listSocios);
+        excelExporter.export(response);
+    }
+@GetMapping("/reportes")
+public String mostrarReportes(Model model) {
+    List<Socios> listSocios = service.listarSocios();
+    model.addAttribute("socios", listSocios);
+    return "socios/reportes";
+}
 }

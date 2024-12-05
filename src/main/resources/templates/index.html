@@ -1,147 +1,146 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Allegro - Padrón de Socios</title>
-    <link rel="stylesheet" href="/css/padron.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Club Allegro</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+         
+    </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="clouds"></div>
 
+    <!-- Navbar con Thymeleaf -->
     <nav th:replace="/componente/navbar :: navbar"></nav>
 
     <main>
+        <!-- Hero Section -->
         <section id="inicio" class="hero">
-            <h1>Bienvenido al Club Allegro</h1>
-            <p>Donde cada socio brilla con luz propia</p>
-            <a href="#constelaciones" class="cta-button">Explora el Universo</a>
+            <div class="hero-content">
+                <h1>Bienvenido al Club Allegro</h1>
+                <p>Únete a nuestra comunidad y disfruta de increíbles beneficios.</p>
+                <a href="#socios" class="btn">Únete ahora</a>
+            </div>
         </section>
 
-        <section id="constelaciones" class="membership-types">
-            <h2>Constelaciones de Membresía</h2>
-            <div class="constellation-grid">
-                <div class="constellation">
-                    <div class="star-icon"><i class="fas fa-star"></i></div>
-                    <h3>Orión</h3>
-                    <ul>
-                        <li>Acceso a eventos estelares mensuales</li>
-                        <li>Uso de telescopios básicos</li>
-                        <li>Boletín cósmico trimestral</li>
-                    </ul>
-                </div>
-                <div class="constellation">
-                    <div class="star-icon"><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <h3>Casiopea</h3>
-                    <ul>
-                        <li>Todos los beneficios de Orión</li>
-                        <li>Acceso al observatorio privado</li>
-                        <li>Viajes anuales para ver lluvias de estrellas</li>
-                    </ul>
-                </div>
-                <div class="constellation">
-                    <div class="star-icon"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <h3>Andrómeda</h3>
-                    <ul>
-                        <li>Todos los beneficios de Casiopea</li>
-                        <li>Membresía en la Sociedad Astronómica Internacional</li>
-                        <li>Cena anual con astrónomos renombrados</li>
-                    </ul>
+        <!-- Beneficios Section -->
+        <section id="beneficios">
+            <div class="container">
+                <h2>Beneficios de ser Socio</h2>
+                <div class="benefit-grid">
+                    <div class="benefit">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Acceso VIP</h3>
+                        <p>Disfruta de acceso prioritario a nuestras instalaciones y eventos exclusivos.</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-percent"></i>
+                        <h3>Descuentos Especiales</h3>
+                        <p>Obtén descuentos en servicios del club y establecimientos asociados.</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-users"></i>
+                        <h3>Networking</h3>
+                        <p>Conecta con otros socios distinguidos en eventos sociales y profesionales.</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Instalaciones Premium</h3>
+                        <p>Accede a nuestras modernas instalaciones deportivas y de ocio.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="nebulosas" class="events">
-            <h2>Nebulosas de Eventos</h2>
-            <div class="event-orbit">
-                <div class="event-planet">
-                    <h3>Gala Estelar</h3>
-                    <p>Una noche de elegancia bajo las estrellas</p>
-                    <span class="date">21 de Junio</span>
-                </div>
-                <div class="event-planet">
-                    <h3>Maratón Messier</h3>
-                    <p>Observa los 110 objetos Messier en una noche</p>
-                    <span class="date">15 de Abril</span>
-                </div>
-                <div class="event-planet">
-                    <h3>Simposio de Exoplanetas</h3>
-                    <p>Conferencias sobre los últimos descubrimientos</p>
-                    <span class="date">3 de Octubre</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="galaxias" class="testimonials">
-            <h2>Testimonios</h2>
-            <div class="testimonial-cluster">
-                <div class="testimonial">
-                    <p>"El Club Cósmico ha expandido mi universo. Las experiencias son verdaderamente estelares."</p>
-                    <span>- Ana Estrella, Socia Andrómeda</span>
-                </div>
-                <div class="testimonial">
-                    <p>"Nunca imaginé que podría ver tantas maravillas celestes. ¡Es un viaje interestelar sin salir de la Tierra!"</p>
-                    <span>- Carlos Nebula, Socio Casiopea</span>
-                </div>
-                <div class="testimonial">
-                    <p>"La comunidad del Club Cósmico es como una gran familia unida por el amor al cosmos."</p>
-                    <span>- Elena Galaxia, Socia Orión</span>
+        <section id="actividades">
+            <div class="container">
+                <h2>Actividades Exclusivas</h2>
+                <div class="activity-grid">
+                    <div class="activity">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Torneo de Golf">
+                        <h3>Torneo de Golf Anual</h3>
+                        <p>Compite en nuestro prestigioso torneo de golf con premios exclusivos.</p>
+                    </div>
+                    <div class="activity">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Cena de Gala">
+                        <h3>Cena de Gala</h3>
+                        <p>Disfruta de una noche elegante con gastronomía de primer nivel.</p>
+                    </div>
+                    <div class="activity">
+                        <img src="/placeholder.svg?height=200&width=300" alt="Conferencias">
+                        <h3>Conferencias Exclusivas</h3>
+                        <p>Asiste a charlas inspiradoras con líderes de diversos campos.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contacto" class="contact">
-            <h2>Contacto Interestelar</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Tu nombre" required>
-                <input type="email" placeholder="Tu correo electrónico" required>
-                <select required>
-                    <option value="">Selecciona tu constelación</option>
-                    <option value="orion">Orión</option>
-                    <option value="casiopea">Casiopea</option>
-                    <option value="andromeda">Andrómeda</option>
-                    <option value="nueva">Nueva Estrella</option>
-                </select>
-                <textarea placeholder="Tu mensaje cósmico" required></textarea>
-                <button type="submit" class="cta-button">Enviar Señal</button>
-            </form>
+        <section id="unete">
+            <div class="container">
+                <h2>Únete al Club Élite</h2>
+                <p>Completa el formulario y nos pondremos en contacto contigo para iniciar tu proceso de membresía.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" required>
+                        <label for="nombre">Nombre Completo</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Correo Electrónico</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="telefono" name="telefono" required>
+                        <label for="telefono">Teléfono</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                        <label for="mensaje">¿Por qué deseas unirte al Club Élite?</label>
+                    </div>
+                    <button type="submit" class="cta-button">Enviar Solicitud</button>
+                </form>
+            </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Navegación Estelar</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#constelaciones">Constelaciones</a></li>
-                    <li><a href="#nebulosas">Nebulosas</a></li>
-                    <li><a href="#galaxias">Galaxias</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Redes Cósmicas</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Club Élite</h4>
+                    <p>Un espacio exclusivo para personas extraordinarias. Únete a nuestra comunidad distinguida.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio" th:href="@{/}">Inicio</a></li>
+                        <li><a href="#beneficios" th:href="@{/beneficios}">Beneficios</a></li>
+                        <li><a href="#actividades" th:href="@{/actividades}">Actividades</a></li>
+                        <li><a href="#unete" th:href="@{/unete}">Únete</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> info@clubelite.com</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Ciudad</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Coordenadas de Contacto</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Vía Láctea, Brazo de Orión, Sistema Solar</p>
-                <p><i class="fas fa-phone"></i> +1 (555) COSMOS-1</p>
-                <p><i class="fas fa-envelope"></i> info@clubcosmico.com</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Club Élite. Todos los derechos reservados.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Club Cósmico. Todos los derechos reservados en esta galaxia y más allá.</p>
-        </div>
     </footer>
+
 </body>
 </html>

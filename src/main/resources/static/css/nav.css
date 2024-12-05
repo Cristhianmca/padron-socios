@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #0a0a2a;
+    --secondary-color: #7b2cbf;
+    --accent-color: #00b4d8;
+    --text-color: #e0e0e0;
+    --bg-color: #030303;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow-x: hidden;
+}
+
+/* Estilos generales para el navbar */
+header {
+    background-color: rgba(10, 10, 42, 0.8);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo-container {
+    margin-right: 30px;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Botones de autenticación */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons a {
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-buttons a.login-btn {
+    background-color: var(--secondary-color);
+}
+
+.auth-buttons a.logout-btn {
+    background-color: var(--accent-color);
+}
+
+/* Menú Burger (para móviles) */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        width: 100%;
+        background-color: rgba(10, 10, 42, 0.9);
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
+/* Hero */
+.hero {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* Secciones Generales */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+h2, h3 {
+    margin-bottom: 1rem;
+}
+
+.constellation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.constellation {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.event-orbit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-planet {
+    background-color: var(--accent-color);
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.footer-section {
+    width: 45%;
+}
+
+.footer-bottom {
+    font-size: 0.8rem;
+}
+
+.social-icons a {
+    margin-right: 10px;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
